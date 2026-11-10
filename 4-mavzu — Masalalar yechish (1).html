@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4-mavzu — Masalalar yechish</title>
+<style>
+:root{--navy:#16324f;--blue:#2364aa;--cyan:#eaf5ff;--gold:#f3b63f;--ink:#1f2937;--muted:#64748b;--line:#dbe4ee;--paper:#fff;--bg:#f3f7fb;--green:#16794b;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#16324f,#2364aa);color:white;padding:30px 18px}
+.wrap{max-width:1100px;margin:auto;padding:0 18px}
+h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.2;margin:0 0 10px}header p{margin:0;max-width:780px;color:#e7f1ff}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav a{background:white;border:1px solid var(--line);border-radius:999px;padding:8px 13px;text-decoration:none;color:var(--navy);font-weight:650;font-size:.92rem}
+main{padding:20px 0 48px}.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;margin:16px 0;box-shadow:0 4px 14px #16324f0a}
+h2{color:var(--navy);font-size:1.45rem;margin:0 0 12px}h3{color:#244f7d;margin:16px 0 8px;font-size:1.08rem}
+.kicker{color:var(--blue);font-weight:750;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.note{background:var(--cyan);border-left:4px solid var(--blue);padding:12px 14px;border-radius:8px}
+.formula{display:inline-block;background:#f0f6ff;border:1px solid #cfe0f7;padding:8px 12px;border-radius:8px;font-weight:750;color:#143d6b;margin:4px 0}
+label{display:block;font-weight:650;margin:9px 0 4px}input,select{font:inherit;padding:9px 10px;border:1px solid #bac8d8;border-radius:8px;width:100%;max-width:300px;background:white}
+button{border:0;border-radius:9px;background:var(--blue);color:white;font:inherit;font-weight:700;padding:10px 14px;cursor:pointer;margin:7px 5px 0 0}
+button.secondary{background:#e8eef5;color:var(--navy)}button:hover{filter:brightness(.96)}
+.result{margin-top:12px;background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:12px;min-height:42px}
+canvas{display:block;width:100%;max-width:650px;height:250px;border:1px solid var(--line);border-radius:12px;background:#fff;margin:12px 0}
+.quiz-q{padding:14px 0;border-bottom:1px solid var(--line)}.quiz-q p{font-weight:700;margin:0 0 8px}
+.quiz-q label{font-weight:450;display:flex;gap:8px;align-items:flex-start}.quiz-q input{width:auto;margin-top:6px}
+small,.muted{color:var(--muted)}footer{text-align:center;color:var(--muted);padding:24px}
+details{border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}summary{font-weight:700;cursor:pointer;color:var(--navy)}
+.pill{display:inline-block;border-radius:999px;background:#fff3d4;padding:3px 9px;color:#7a4a00;font-size:.82rem;font-weight:700}
+@media(max-width:600px){.card{padding:16px}header{padding:24px 0}nav a{font-size:.84rem}canvas{height:210px}}
+.video{position:relative;width:100%;max-width:800px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;margin:12px 0}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="kicker" style="color:#c9e4ff">10-sinf fizika • Interaktiv dars</div>
+<h1>4-mavzu: O‘tilgan mavzular yuzasidan masalalar yechish</h1>
+<p>Mexanika va elektr bo‘limlaridagi formulalarni takrorlang, hisoblash simulyatsiyalarini bajaring va bilimingizni test orqali tekshiring.</p>
+</div></header>
+<main class="wrap">
+<nav aria-label="Bo‘limlar">
+<a href="#reja">Dars rejasi</a><a href="#video">Video dars</a><a href="#mexanika">Mexanika</a><a href="#aylana">Markazga intilma kuch</a><a href="#gravitatsiya">Gravitatsiya</a><a href="#elektr">Elektr zanjiri</a><a href="#temperatura">Qarshilik va temperatura</a><a href="#mustaqil">Mustaqil masalalar</a><a href="#test">Test</a>
+</nav>
+
+<section class="card" id="reja">
+<div class="kicker">Darsning tuzilishi</div><h2>3 ta reja</h2>
+<div class="grid">
+<div><h3>1. Mexanikaga oid masalalar</h3><p>Kuchlarni qo‘shish, Nyutonning ikkinchi qonuni, markazga intilma kuch, gravitatsiya va jism og‘irligi.</p></div>
+<div><h3>2. Formulalar bilan hisoblash</h3><p>Berilganlarni yozish, SI birliklariga o‘tkazish, formulani tanlash, qiymatlarni qo‘yish va javobni tekshirish.</p></div>
+<div><h3>3. Elektr hodisalariga oid masalalar</h3><p>Tok kuchi, tok zichligi, to‘liq zanjir uchun Om qonuni, EYuK, ichki qarshilik va temperatura ta’siri.</p></div>
+</div>
+<div class="note"><b>Masala yechish algoritmi:</b> 1) Berilganini yozing. 2) Topish kerak bo‘lgan kattalikni belgilang. 3) Formulani tanlang. 4) Birliklarni SI ga keltiring. 5) Hisoblang. 6) Javobning fizik ma’nosini tekshiring.</div>
+</section>
+
+<section class="card" id="video">
+<div class="kicker">Video dars</div><h2>Masalalar yechish bo‘yicha video</h2>
+<div class="video"><iframe src="https://www.youtube.com/embed/t9JqUrnec6o" title="Masalalar yechish — video dars" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<p><a href="https://youtu.be/t9JqUrnec6o" target="_blank" rel="noopener">YouTube’da ochish ↗</a></p>
+</section>
+
+<section class="card" id="mexanika">
+<div class="kicker">1-reja</div><h2>Mexanikaga oid masalalar</h2>
+<h3>Namuna 1. Natijaviy kuch</h3>
+<p>Jismga o‘ng tomonga 12 N, chap tomonga 5 N kuch ta’sir qiladi. Natijaviy kuchni toping.</p>
+<details><summary>Yechimini ko‘rish</summary>
+<p>Qarama-qarshi yo‘nalgan kuchlar ayiriladi: <span class="formula">F<sub>nat</sub> = 12 − 5 = 7 N</span>.</p><p>Javob: <b>7 N o‘ng tomonga.</b></p></details>
+<h3>Namuna 2. Nyutonning ikkinchi qonuni</h3>
+<p>Massasi 4 kg bo‘lgan jismga 20 N natijaviy kuch ta’sir qiladi. Tezlanishni toping.</p>
+<details><summary>Yechimini ko‘rish</summary><p><span class="formula">F = ma → a = F/m</span></p><p>a = 20/4 = <b>5 m/s²</b>.</p></details>
+<div class="note">Eslatma: kuchning SI birligi — nyuton (N), massa — kilogramm (kg), tezlanish — m/s².</div>
+</section>
+
+<section class="card" id="aylana">
+<div class="kicker">Interaktiv simulyatsiya 1</div><h2>Markazga intilma kuch</h2>
+<p>Aylanma harakatdagi jism uchun <span class="formula">F = mv²/r</span>. Massa, tezlik va radiusni o‘zgartiring.</p>
+<div class="grid">
+<div><label for="mass">Massa m (kg)</label><input id="mass" type="number" min="0.1" step="0.1" value="2">
+<label for="speed">Tezlik v (m/s)</label><input id="speed" type="number" min="0" step="0.5" value="4">
+<label for="radius">Radius r (m)</label><input id="radius" type="number" min="0.1" step="0.1" value="2">
+<button onclick="calcCircle()">Hisoblash va animatsiya</button><button class="secondary" onclick="resetCircle()">Qayta boshlash</button>
+<div class="result" id="circleResult" aria-live="polite">Natija shu yerda ko‘rsatiladi.</div></div>
+<div><canvas id="circleCanvas" width="650" height="250" aria-label="Aylanma harakat animatsiyasi"></canvas><small>Ko‘k nuqta aylana bo‘ylab harakatlanadi; markazga yo‘nalgan strelka kuch yo‘nalishini bildiradi.</small></div>
+</div>
+</section>
+
+<section class="card" id="gravitatsiya">
+<div class="kicker">Interaktiv simulyatsiya 2</div><h2>Gravitatsiya maydonidagi erkin tushish</h2>
+<p>Havo qarshiligi hisobga olinmaydi. Yer sirtiga yaqin joyda g = 9,8 m/s² deb oling.</p>
+<div class="grid">
+<div><label for="height">Balandlik h (m)</label><input id="height" type="number" min="0.1" step="1" value="20">
+<button onclick="calcFall()">Hisoblash va tushishni ko‘rsatish</button>
+<div class="result" id="fallResult" aria-live="polite">Natija shu yerda ko‘rsatiladi.</div></div>
+<div><canvas id="fallCanvas" width="650" height="250" aria-label="Erkin tushish animatsiyasi"></canvas><small>Animatsiya tushish jarayonini sxematik ko‘rsatadi.</small></div>
+</div>
+<div class="formula">h = gt²/2</div> <div class="formula">v = gt</div>
+</section>
+
+<section class="card" id="elektr">
+<div class="kicker">Interaktiv simulyatsiya 3</div><h2>To‘liq zanjir uchun Om qonuni</h2>
+<p><span class="formula">I = ε/(R + r)</span> — bu yerda ε EYuK, R tashqi qarshilik, r ichki qarshilik.</p>
+<div class="grid">
+<div><label for="emf">EYuK ε (V)</label><input id="emf" type="number" min="0" step="0.1" value="12">
+<label for="resistance">Tashqi qarshilik R (Ω)</label><input id="resistance" type="number" min="0" step="0.1" value="5">
+<label for="internal">Ichki qarshilik r (Ω)</label><input id="internal" type="number" min="0" step="0.1" value="1">
+<button onclick="calcCircuit()">Tok kuchini hisoblash</button>
+<div class="result" id="circuitResult" aria-live="polite">Natija shu yerda ko‘rsatiladi.</div></div>
+<div><canvas id="circuitCanvas" width="650" height="250" aria-label="Elektr zanjiri sxemasi"></canvas><small>Sxematik zanjir: manba, kalit va qarshilik. Hisoblash ideal soddalashtirilgan modelga asoslangan.</small></div>
+</div>
+</section>
+
+<section class="card" id="temperatura">
+<div class="kicker">Interaktiv simulyatsiya 4</div><h2>Metall qarshiligining temperaturaga bog‘liqligi</h2>
+<p><span class="formula">R = R₀[1 + α(T − T₀)]</span></p>
+<div class="grid">
+<div><label for="r0">Boshlang‘ich qarshilik R₀ (Ω)</label><input id="r0" type="number" min="0.01" step="0.1" value="10">
+<label for="alpha">Temperatura koeffitsiyenti α (1/°C)</label><input id="alpha" type="number" min="0" step="0.0001" value="0.004">
+<label for="t0">Boshlang‘ich temperatura T₀ (°C)</label><input id="t0" type="number" step="1" value="20">
+<label for="temp">Yangi temperatura T (°C)</label><input id="temp" type="number" step="5" value="80">
+<button onclick="calcTemp()">Qarshilikni hisoblash</button>
+<div class="result" id="tempResult" aria-live="polite">Natija shu yerda ko‘rsatiladi.</div></div>
+<div><canvas id="tempCanvas" width="650" height="250" aria-label="Qarshilikning temperaturaga bog‘liqlik grafigi"></canvas><small>Grafik tanlangan parametrlar asosida qarshilikning temperatura bilan chiziqli o‘zgarishini ko‘rsatadi.</small></div>
+</div>
+</section>
+
+<section class="card" id="mustaqil">
+<div class="kicker">Mustaqil ish</div><h2>Masalalar to‘plami</h2>
+<p>Avval o‘zingiz yechishga harakat qiling, so‘ng yechimni ochib tekshiring.</p>
+<details><summary>1. Kuchlar (oson)</summary><p>Jismga bir yo‘nalishda 8 N va 6 N kuch ta’sir qiladi. Natijaviy kuch: <b>14 N</b>.</p></details>
+<details><summary>2. Tezlanish (oson)</summary><p>m = 3 kg, F = 15 N. a = F/m = 15/3 = <b>5 m/s²</b>.</p></details>
+<details><summary>3. Markazga intilma kuch (o‘rta)</summary><p>m = 1,5 kg, v = 6 m/s, r = 3 m. F = mv²/r = 1,5·36/3 = <b>18 N</b>.</p></details>
+<details><summary>4. Erkin tushish (o‘rta)</summary><p>Jism 19,6 m balandlikdan tinch holatdan tushadi. t = √(2h/g) = √(39,2/9,8) = <b>2 s</b>.</p></details>
+<details><summary>5. To‘liq zanjir (o‘rta)</summary><p>ε = 9 V, R = 2 Ω, r = 1 Ω. I = 9/(2+1) = <b>3 A</b>.</p></details>
+<details><summary>6. Tok kuchi (oson)</summary><p>10 sekundda 30 C zaryad o‘tsa, I = q/t = 30/10 = <b>3 A</b>.</p></details>
+<details><summary>7. Tok zichligi (o‘rta)</summary><p>I = 2 A, S = 0,5 mm² = 0,5·10⁻⁶ m². j = I/S = <b>4·10⁶ A/m²</b>.</p></details>
+<details><summary>8. Metall qarshiligi (o‘rta)</summary><p>R₀ = 5 Ω, α = 0,004 1/°C, T₀ = 20°C, T = 70°C. R = 5[1 + 0,004·50] = <b>6 Ω</b>.</p></details>
+<details><summary>9. Og‘irlik (o‘rta)</summary><p>m = 60 kg jism tinch holatda g = 9,8 m/s² sharoitda turibdi. P = mg = <b>588 N</b>.</p></details>
+<details><summary>10. EYuK va ichki qarshilik (murakkabroq)</summary><p>ε = 12 V, I = 2 A, R = 5 Ω. ε = I(R+r), demak r = ε/I − R = 6 − 5 = <b>1 Ω</b>.</p></details>
+</section>
+
+<section class="card" id="test">
+<div class="kicker">Bilimni tekshirish</div><h2>10 ta test savoli</h2>
+<form id="quiz">
+<div class="quiz-q"><p>1. Nyutonning ikkinchi qonuni qaysi formula bilan ifodalanadi?</p>
+<label><input type="radio" name="q1" value="a"> F = ma</label><label><input type="radio" name="q1" value="b"> I = U/R</label><label><input type="radio" name="q1" value="c"> ρ = m/V</label><label><input type="radio" name="q1" value="d"> P = UI</label></div>
+<div class="quiz-q"><p>2. Kuchning SI birligi qaysi?</p>
+<label><input type="radio" name="q2" value="a"> Joul</label><label><input type="radio" name="q2" value="b"> Nyuton</label><label><input type="radio" name="q2" value="c"> Vatt</label><label><input type="radio" name="q2" value="d"> Kulon</label></div>
+<div class="quiz-q"><p>3. Markazga intilma kuch formulasi qaysi?</p>
+<label><input type="radio" name="q3" value="a"> F = mv²/r</label><label><input type="radio" name="q3" value="b"> F = mg²</label><label><input type="radio" name="q3" value="c"> F = IR</label><label><input type="radio" name="q3" value="d"> F = q/t</label></div>
+<div class="quiz-q"><p>4. Erkin tushish tezlanishining Yer sirtiga yaqin taxminiy qiymati?</p>
+<label><input type="radio" name="q4" value="a"> 1,6 m/s²</label><label><input type="radio" name="q4" value="b"> 3 m/s²</label><label><input type="radio" name="q4" value="c"> 9,8 m/s²</label><label><input type="radio" name="q4" value="d"> 100 m/s²</label></div>
+<div class="quiz-q"><p>5. To‘liq zanjir uchun Om qonuni qaysi?</p>
+<label><input type="radio" name="q5" value="a"> I = ε/(R+r)</label><label><input type="radio" name="q5" value="b"> F = ma</label><label><input type="radio" name="q5" value="c"> v = s/t²</label><label><input type="radio" name="q5" value="d"> R = ρV</label></div>
+<div class="quiz-q"><p>6. Tok kuchi qanday aniqlanadi?</p>
+<label><input type="radio" name="q6" value="a"> I = q/t</label><label><input type="radio" name="q6" value="b"> I = mt</label><label><input type="radio" name="q6" value="c"> I = Fr</label><label><input type="radio" name="q6" value="d"> I = U·R</label></div>
+<div class="quiz-q"><p>7. Tok zichligining formulasi qaysi?</p>
+<label><input type="radio" name="q7" value="a"> j = I/S</label><label><input type="radio" name="q7" value="b"> j = S/I</label><label><input type="radio" name="q7" value="c"> j = IR</label><label><input type="radio" name="q7" value="d"> j = qU</label></div>
+<div class="quiz-q"><p>8. Metall o‘tkazgichlarda temperatura oshganda qarshilik odatda qanday o‘zgaradi?</p>
+<label><input type="radio" name="q8" value="a"> Kamayadi</label><label><input type="radio" name="q8" value="b"> O‘zgarmaydi</label><label><input type="radio" name="q8" value="c"> Ortadi</label><label><input type="radio" name="q8" value="d"> Har doim nol bo‘ladi</label></div>
+<div class="quiz-q"><p>9. Massasi 2 kg jismning og‘irligi (g = 10 m/s²) qancha?</p>
+<label><input type="radio" name="q9" value="a"> 5 N</label><label><input type="radio" name="q9" value="b"> 12 N</label><label><input type="radio" name="q9" value="c"> 20 N</label><label><input type="radio" name="q9" value="d"> 200 N</label></div>
+<div class="quiz-q"><p>10. Qarama-qarshi yo‘nalgan 15 N va 9 N kuchlarning natijaviy kuchi qancha?</p>
+<label><input type="radio" name="q10" value="a"> 24 N</label><label><input type="radio" name="q10" value="b"> 6 N</label><label><input type="radio" name="q10" value="c"> 135 N</label><label><input type="radio" name="q10" value="d"> 0 N</label></div>
+<button type="button" onclick="gradeQuiz()">Testni tekshirish</button><button class="secondary" type="reset" onclick="document.getElementById('quizResult').textContent='';">Qayta boshlash</button>
+</form><div class="result" id="quizResult" aria-live="polite">Javoblarni tanlab, “Testni tekshirish” tugmasini bosing.</div>
+</section>
+<section class="card"><h2>Yakuniy savollar</h2>
+<ol><li>Masalani yechishda birliklarni SI tizimiga o‘tkazish nima uchun muhim?</li><li>Natijaviy kuch nol bo‘lsa, jism qanday harakat qilishi mumkin?</li><li>Markazga intilma kuch tezlikka qanday bog‘liq?</li><li>To‘liq zanjirda ichki qarshilik tok kuchiga qanday ta’sir qiladi?</li><li>Metall qarshiligining temperaturaga bog‘liqligini qaysi formula ifodalaydi?</li></ol>
+</section>
+</main>
+<footer>10-sinf fizika • Masalalar yechish • Interaktiv HTML5 dars materiali</footer>
+<script>
+function num(id){return Number(document.getElementById(id).value)}
+function show(id,html){document.getElementById(id).innerHTML=html}
+function calcCircle(){
+ const m=num('mass'),v=num('speed'),r=num('radius');
+ if(m<=0||v<0||r<=0||![m,v,r].every(Number.isFinite)){show('circleResult','Qiymatlarni tekshiring: m va r musbat, v esa manfiy bo‘lmasin.');return}
+ const f=m*v*v/r;show('circleResult',`Hisoblash: F = mv²/r = ${m} × ${v}² / ${r}<br><b>Markazga intilma kuch: ${f.toLocaleString('uz-UZ',{maximumFractionDigits:3})} N</b>`);
+ drawCircle();
+}
+function resetCircle(){document.getElementById('mass').value=2;document.getElementById('speed').value=4;document.getElementById('radius').value=2;calcCircle()}
+function drawCircle(){
+ const c=document.getElementById('circleCanvas'),x=c.getContext('2d'),w=c.width,h=c.height;x.clearRect(0,0,w,h);
+ const cx=w/2,cy=h/2,rad=75,ang=Date.now()/650% (Math.PI*2),px=cx+rad*Math.cos(ang),py=cy+rad*Math.sin(ang);
+ x.strokeStyle='#9bb7d3';x.lineWidth=3;x.beginPath();x.arc(cx,cy,rad,0,Math.PI*2);x.stroke();
+ x.fillStyle='#16324f';x.beginPath();x.arc(cx,cy,5,0,Math.PI*2);x.fill();
+ x.strokeStyle='#2364aa';x.lineWidth=3;x.beginPath();x.moveTo(px,py);x.lineTo(cx,cy);x.stroke();
+ const a=Math.atan2(cy-py,cx-px);x.beginPath();x.moveTo(cx,cy);x.lineTo(cx-10*Math.cos(a-.5),cy-10*Math.sin(a-.5));x.lineTo(cx-10*Math.cos(a+.5),cy-10*Math.sin(a+.5));x.closePath();x.fillStyle='#2364aa';x.fill();
+ x.fillStyle='#f3b63f';x.beginPath();x.arc(px,py,9,0,Math.PI*2);x.fill();
+ x.fillStyle='#16324f';x.font='16px sans-serif';x.fillText('F — markazga',cx+12,cy-12);
+}
+function calcFall(){
+ const h=num('height');if(h<=0||!Number.isFinite(h)){show('fallResult','Balandlik musbat son bo‘lishi kerak.');return}
+ const g=9.8,t=Math.sqrt(2*h/g),v=g*t;
+ show('fallResult',`t = √(2h/g) = √(2 × ${h} / 9,8)<br><b>Tushish vaqti: ${t.toLocaleString('uz-UZ',{maximumFractionDigits:3})} s</b><br>Yerga yetish oldidagi tezlik: <b>${v.toLocaleString('uz-UZ',{maximumFractionDigits:3})} m/s</b>`);
+ drawFall(h);
+}
+function drawFall(height){
+ const c=document.getElementById('fallCanvas'),x=c.getContext('2d'),w=c.width,h=c.height;x.clearRect(0,0,w,h);
+ x.strokeStyle='#64748b';x.lineWidth=4;x.beginPath();x.moveTo(95,20);x.lineTo(95,h-22);x.stroke();
+ x.fillStyle='#dbeafe';x.fillRect(110,20,130,h-42);
+ x.fillStyle='#2364aa';x.font='15px sans-serif';x.fillText(`h = ${height} m`,130,40);
+ const y=h-30; x.fillStyle='#f3b63f';x.beginPath();x.arc(175,y,12,0,Math.PI*2);x.fill();
+ x.fillStyle='#16794b';x.fillRect(105,h-18,145,8);x.fillStyle='#16324f';x.fillText('Yer sathi',260,h-14);
+ x.strokeStyle='#2364aa';x.lineWidth=2;x.beginPath();x.moveTo(275,45);x.lineTo(275,100);x.stroke();x.beginPath();x.moveTo(275,100);x.lineTo(268,89);x.lineTo(282,89);x.closePath();x.fillStyle='#2364aa';x.fill();
+ x.fillText('g',288,75);
+}
+function calcCircuit(){
+ const e=num('emf'),R=num('resistance'),r=num('internal');
+ if(e<0||R<0||r<0||R+r<=0||![e,R,r].every(Number.isFinite)){show('circuitResult','EYuK va qarshiliklar manfiy bo‘lmasin; R + r nol bo‘lmasligi kerak.');return}
+ const I=e/(R+r),U=I*R;
+ show('circuitResult',`I = ε/(R+r) = ${e}/(${R}+${r})<br><b>Tok kuchi: ${I.toLocaleString('uz-UZ',{maximumFractionDigits:3})} A</b><br>Tashqi zanjirdagi kuchlanish: ${U.toLocaleString('uz-UZ',{maximumFractionDigits:3})} V`);
+ drawCircuit();
+}
+function drawCircuit(){
+ const c=document.getElementById('circuitCanvas'),x=c.getContext('2d'),w=c.width,h=c.height;x.clearRect(0,0,w,h);x.strokeStyle='#2364aa';x.lineWidth=4;
+ x.beginPath();x.moveTo(115,65);x.lineTo(500,65);x.lineTo(500,185);x.lineTo(115,185);x.closePath();x.stroke();
+ x.strokeStyle='#16324f';x.lineWidth=5;x.beginPath();x.moveTo(150,45);x.lineTo(150,85);x.moveTo(168,52);x.lineTo(168,78);x.stroke();
+ x.fillStyle='#16324f';x.font='16px sans-serif';x.fillText('Manba',112,30);x.fillText('R',315,52);x.fillText('Kalit',400,52);
+ x.strokeStyle='#f3b63f';x.lineWidth=4;x.beginPath();x.moveTo(380,65);x.lineTo(405,48);x.stroke();
+ x.strokeStyle='#2364aa';x.beginPath();x.moveTo(275,65);x.lineTo(275,185);x.stroke();x.fillStyle='#2364aa';x.fillText('I →',285,130);
+}
+function calcTemp(){
+ const R0=num('r0'),a=num('alpha'),t0=num('t0'),t=num('temp');
+ if(R0<=0||a<0||![R0,a,t0,t].every(Number.isFinite)){show('tempResult','R₀ musbat, α manfiy bo‘lmagan qiymat bo‘lishi kerak.');return}
+ const R=R0*(1+a*(t-t0));
+ show('tempResult',`R = ${R0}[1 + ${a}(${t} − ${t0})]<br><b>Qarshilik: ${R.toLocaleString('uz-UZ',{maximumFractionDigits:4})} Ω</b><br>${t>=t0?'Temperatura oshgani uchun modelda qarshilik ortadi yoki o‘zgarmaydi.':'Temperatura pasaygani uchun modelda qarshilik kamayadi.'}`);
+ drawTemp(R0,a,t0,t);
+}
+function drawTemp(R0,a,t0,t){
+ const c=document.getElementById('tempCanvas'),x=c.getContext('2d'),w=c.width,h=c.height;x.clearRect(0,0,w,h);
+ const left=55,right=w-25,top=20,bottom=h-40; x.strokeStyle='#64748b';x.lineWidth=1.5;x.beginPath();x.moveTo(left,top);x.lineTo(left,bottom);x.lineTo(right,bottom);x.stroke();
+ x.fillStyle='#16324f';x.font='14px sans-serif';x.fillText('R (Ω)',8,18);x.fillText('T (°C)',right-40,h-10);
+ const minT=Math.min(t0,t)-20,maxT=Math.max(t0,t)+20,vals=[R0*(1+a*(minT-t0)),R0*(1+a*(maxT-t0))],minR=Math.min(...vals,0),maxR=Math.max(...vals)*1.12||1;
+ const px=T=>left+(T-minT)/(maxT-minT||1)*(right-left),py=R=>bottom-(R-minR)/(maxR-minR||1)*(bottom-top);
+ x.strokeStyle='#2364aa';x.lineWidth=3;x.beginPath();x.moveTo(px(minT),py(R0*(1+a*(minT-t0))));x.lineTo(px(maxT),py(R0*(1+a*(maxT-t0))));x.stroke();
+ const current=R0*(1+a*(t-t0));x.fillStyle='#f3b63f';x.beginPath();x.arc(px(t),py(current),6,0,Math.PI*2);x.fill();
+ x.fillStyle='#16324f';x.fillText(`R ≈ ${current.toFixed(2)} Ω`,Math.min(right-115,px(t)+8),Math.max(top+15,py(current)-8));
+}
+const answers={q1:'a',q2:'b',q3:'a',q4:'c',q5:'a',q6:'a',q7:'a',q8:'c',q9:'c',q10:'b'};
+function gradeQuiz(){
+ let score=0,unanswered=0;
+ for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector(`input[name="${q}"]:checked`);if(!chosen)unanswered++;else if(chosen.value===a)score++}
+ const pct=Math.round(score/10*100);
+ show('quizResult',`Natija: <b>${score}/10 (${pct}%)</b>. ${unanswered?`${unanswered} ta savol javobsiz qoldi. `:''}${score>=8?'A’lo! Bilimingiz yaxshi.':score>=5?'Yaxshi. Xato qilingan mavzularni qayta ko‘rib chiqing.':'Formulalarni takrorlab, masalalarni yana bir bor yechib ko‘ring.'}<br><small>Javob kaliti: 1-A, 2-B, 3-A, 4-C, 5-A, 6-A, 7-A, 8-C, 9-C, 10-B.</small>`);
+}
+function init(){drawCircle();drawFall(20);drawCircuit();drawTemp(10,.004,20,80);calcCircle();calcFall();calcCircuit();calcTemp()}
+init();
+</script>
+</body>
+</html>
